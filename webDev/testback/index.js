@@ -7,6 +7,21 @@ const port = 3000;
 app.get("/login", (request, response) => {
     return response.send("You are visiting Login Route");
 });
+const admin = (req, res) => {
+    return res.send("Admin Dasboard");
+};
+
+const isAdmin = (req, res, next) => {
+    console.log("isAdmin is running");
+    next();
+}
+
+const isloggedIn = (req, res, next) => {
+    console.log("isloggedIn is running");
+    next();
+}
+
+app.get("/admin", isloggedIn , isAdmin ,admin );
 
 app.get("/", (request, response) => {
     return response.send("Homepage");
